@@ -1,0 +1,16 @@
+{
+  "name": "slide-generator",
+  "version": "1.0.0",
+  "description": "A PoC project for generating slides using branded templates.",
+  "main": "createPresentation.js",
+  "scripts": {
+    "create-pptx": "node createPresentation.js",
+    "upload-slides": "node uploadToGoogleSlides.js",
+    "create-nodejs-pptx": "node createPptxWithNodejsPptx.js"
+  },
+  "dependencies": {
+    "googleapis": "^143.0.0",
+    "nodejs-pptx": "^1.2.4",
+    "pptx-automizer": "^0.5.1"
+  }
+}
