@@ -1,14 +1,36 @@
+# Slide Generator
 
-## Dependencies
+Slide Generator is a Proof of Concept (PoC) project for generating slides using branded templates. It leverages `pptx-automizer` and `nodejs-pptx` for creating PowerPoint presentations and `googleapis` for uploading them to Google Slides.
 
-- [googleapis](https://www.npmjs.com/package/googleapis): Google APIs Client Library for Node.js
-- [nodejs-pptx](https://www.npmjs.com/package/nodejs-pptx): A library for creating PowerPoint presentations with Node.js
-- [pptx-automizer](https://www.npmjs.com/package/pptx-automizer): A library for automating the manipulation of existing .pptx files
+## Table of Contents
 
-## Contributing
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Create PPTX](#create-pptx)
+  - [Upload to Google Slides](#upload-to-google-slides)
+  - [Create PPTX with nodejs-pptx](#create-pptx-with-nodejs-pptx)
+- [Testing](#testing)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [License](#license)
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+## Installation
 
-## License
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/slide-generator.git
+    cd slide-generator
+    ```
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+2. Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Ensure you have a `credentials.json` file for Google API authentication in the root directory.
+
+## Usage
+
+### Create PPTX
+
+To generate a PowerPoint presentation using `pptx-automizer`, run:2
