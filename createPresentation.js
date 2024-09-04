@@ -56,9 +56,16 @@ async function createPresentation() {
     .load(`TextReplace.pptx`)
     .load(`SlideWithImages.pptx`, 'images')
 
+    await pres.addSlide('base', 1, async (slide) => {
+      const elements = await slide.getAllElements();
+      console.log(elements)
+      slide.modifyElement('Titel 1', modify.setText('My Awesome title'))
+      slide.modifyElement('Untertitel 2', modify.setText('Description'))
+    })
+
 
     await pres
-    .addSlide('charts', 2, (slide) => {
+      .addSlide('charts', 2, async (slide) => {
       slide.modifyElement('ColumnChart', [
         modify.setChartData({
           series: [
@@ -72,6 +79,28 @@ async function createPresentation() {
             {label: 'cat 2-3', values: [15, 50, 20]},
             {label: 'cat 2-4', values: [26, 50, 20]}
           ]
+        }),
+        ModifyShapeHelper.setPosition({
+          x: CmToDxa((25.4 - 15) / 2 - 1), // Center horizontally and shift left
+          y: CmToDxa(6), // Position 6 cm from the top
+          w: CmToDxa(7.5), // Element width
+          h: CmToDxa(10), // Element height
+        })
+      ]);
+
+      slide.modifyElement('PieChart', [
+        modify.setChartData({
+          series: [{ label: 'Pie Chart title' }],
+          categories: [
+            { label: 'cat 1-1', values: [50] },
+            { label: 'cat 1-2', values: [14] },
+          ],
+        }),
+        ModifyShapeHelper.setPosition({
+          x: CmToDxa((25.4 - 15) / 2 + 11), // Center horizontally and shift right
+          y: CmToDxa(6), // Position 6 cm from the top
+          w: CmToDxa(7.5), // Element width
+          h: CmToDxa(10), // Element height
         })
       ]);
     })
@@ -230,8 +259,16 @@ async function createPresentation() {
   //   ],
   // };
 
-  // pres.addSlide('images', 1);
-  // pres.addSlide('images', 2);
+  await pres
+  .addSlide('images', 1, async (slide) => {
+    const elements = await slide.getAllElements();
+    console.log(elements[0].name) 
+    elements.forEach(element => {
+      slide.removeElement({ name: element.name })
+    })
+
+    slide.addElement('images', 1, elements[0].name);
+  })
 
   // await pres.addSlide('tables', 3, (slide) => {
   //   slide.modifyElement('TableWithEmptyCells', [
