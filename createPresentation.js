@@ -57,8 +57,6 @@ async function createPresentation() {
     .load(`SlideWithImages.pptx`, 'images')
 
     await pres.addSlide('base', 1, async (slide) => {
-      const elements = await slide.getAllElements();
-      console.log(elements)
       slide.modifyElement('Titel 1', modify.setText('My Awesome title'))
       slide.modifyElement('Untertitel 2', modify.setText('Description'))
     })
@@ -66,6 +64,7 @@ async function createPresentation() {
 
     await pres
       .addSlide('charts', 2, async (slide) => {
+      slide.useSlideLayout(2);
       slide.modifyElement('ColumnChart', [
         modify.setChartData({
           series: [
@@ -107,8 +106,7 @@ async function createPresentation() {
 
     await pres
     .addSlide('tables', 3, async (slide) => {
-      const elements =await slide.getAllElements();
-      console.log(elements)
+      slide.useSlideLayout(3);
       slide.removeElement('TableWithEmptyCells')
       slide.removeElement('TableWithFormattedCells')
       // slide.removeElement('Titel 2')
@@ -261,8 +259,8 @@ async function createPresentation() {
 
   await pres
   .addSlide('images', 1, async (slide) => {
+    slide.useSlideLayout(2);
     const elements = await slide.getAllElements();
-    console.log(elements[0].name) 
     elements.forEach(element => {
       slide.removeElement({ name: element.name })
     })
